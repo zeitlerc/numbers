@@ -7,3 +7,4 @@ build
 **/numbers.log
 **/app.log
 .vscode
+app/bin
