@@ -1,13 +1,18 @@
 ## Setup
 The application requires Java 17 (Eclipse Temurin)
+
 Gradle 8.8.1 can be installed via any Gradle Wrapper command, such as `./gradlew --version`
 
 ## Run
 `./gradlew run` will start the application.
+
 `./gradlew randomNumbersClient` will start clients that send random valid 9 digit numbers to the application on localhost.
+
 `./gradlew terminatingClient` will start a client that only sends `terminate` to the server.
 
+
 The application outputs to `./app/numbers.log`.
+
 The application logs to `./app/app.log`.
 
 ## Assumptions
