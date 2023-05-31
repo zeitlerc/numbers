@@ -56,13 +56,21 @@ public class App {
     private static void startReporter(NumberTracker tracker) {
         Runnable reporter = new Runnable() {
             public void run() {
-                Stats stats = tracker.resetStats();
-                System.out.println(
-                        String.format(
-                                "Received %d unique numbers, %d duplicates. Unique total: %d",
-                                stats.getNewUniques(),
-                                stats.getNewDuplicates(),
-                                stats.getTotalUniques()));
+                try {
+                    Stats stats = tracker.resetStats();
+                    System.out.println(
+                            String.format(
+                                    "Received %d unique numbers, %d duplicates. Unique total: %d",
+                                    stats.getNewUniques(),
+                                    stats.getNewDuplicates(),
+                                    stats.getTotalUniques()));
+                    System.out.println("The most frequent duplicates are:" + 
+                        stats.getTopDuplicates().stream()
+                            .map(duplicate -> String.format("%s: %d", duplicate.getKey(), duplicate.getValue()))
+                            .toList().toString());
+                } catch (Exception e) {
+                    logger.error("Could not run report", e);
+                }
             }
         };
         reportExecutor.scheduleAtFixedRate(reporter, 0, REPORT_SECONDS, TimeUnit.SECONDS);

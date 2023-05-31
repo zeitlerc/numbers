@@ -17,7 +17,7 @@ public class NumberListener implements Callable<ListenerResult> {
     private NumberTracker numberTracker;
     private NumberFileWriter fileWriter;
 
-    private static final Pattern numberRegex = Pattern.compile("[0-9]{9}");
+    private static final Pattern numberRegex = Pattern.compile("^[0-9]{9}$");
 
     public NumberListener(ServerSocket server, NumberTracker numberTracker, NumberFileWriter fileWriter) {
         this.server = server;
